@@ -1,0 +1,30 @@
+
+// Time Complexity : (O)n KLogk k k is the size of string
+// Space Complexity : (O)n
+// Did this code successfully run on Leetcode : Yes
+
+// Your code here along with comments explaining your approach
+// sort each string and put it into hashmap. Hashmap key is the sorted string and value is array of input string which belogs to the sorted key
+
+class Solution {
+    func groupAnagrams(_ strs: [String]) -> [[String]] {
+        
+        var result:[String:[String]] = [:]
+        for str in strs{
+            let sortedString = String(str.sorted())
+            if result[sortedString] != nil {
+                if let array = result[sortedString] {
+                let arr = array + [str]
+                result[sortedString] = arr
+                }
+            }else {
+                result[sortedString] = [str]
+            }
+        }
+        var array:[[String]] = [[String]]()
+        result.values.forEach { value in
+            array.append(value)
+        }
+        return array;
+    }
+}
